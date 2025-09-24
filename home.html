@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile — Circle Photo with Medal & Story</title>
+  <style>
+    :root{
+      --bg: #0f1724;
+      --card: #0b1220;
+      --accent: #ffd166;
+      --muted: #94a3b8;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 16px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#071029 0%, #071122 60%);
+      color:#e6eef8;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:48px 20px;
+    }
+
+    /* Top navigation */
+    .nav{
+      position:fixed;
+      top:18px;
+      left:50%;
+      transform:translateX(-50%);
+      width:100%;
+      max-width:1100px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:8px 14px;
+      background:transparent;
+      z-index:50;
+    }
+    .brand{font-weight:700;letter-spacing:0.6px}
+    .menu{display:flex;gap:14px;align-items:center}
+    .menu a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px}
+    .menu a:hover{color:#fff;background:var(--glass)}
+    .cta{background:var(--accent);color:#062; padding:8px 12px;border-radius:10px;font-weight:600}
+
+    /* Card */
+    .card{
+      width:100%;
+      max-width:1100px;
+      margin-top:70px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:28px;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:28px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      align-items:start;
+    }
+
+    /* left column: photo + medal */
+    .profile{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .photo-wrap{
+      position:relative;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#0b1220, #16324a);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      overflow:visible;
+    }
+    .photo-wrap img{
+      width:230px;
+      height:230px;
+      object-fit:cover;
+      border-radius:50%;
+      border:6px solid rgba(255,255,255,0.04);
+      display:block;
+    }
+
+    /* medal / badge overlapping */
+    .medal{
+      position:absolute;
+      right:-10px;
+      bottom:-10px;
+      width:88px;
+      height:88px;
+      border-radius:50%;
+      background:linear-gradient(180deg,#ffd166,#ffb84d);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#08202a;
+      font-weight:700;
+      transform:rotate(-8deg);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+      border:4px solid rgba(255,255,255,0.12);
+    }
+    .medal small{display:block;font-size:11px;color:rgba(8,32,42,0.8);font-weight:600}
+    .medal .rank{font-size:20px;line-height:1}
+
+    /* right column: story */
+    .story{
+      padding:10px 6px;
+    }
+    .meta{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+    .name{font-size:22px;font-weight:700}
+    .role{font-size:13px;color:var(--muted);}
+    .bio{color:#cfe6ff;line-height:1.6;margin-top:8px}
+
+    .buttons{margin-top:18px;display:flex;gap:12px}
+    .btn{padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn-outline{border:1px solid rgba(255,255,255,0.06);color:var(--muted);}
+    .btn-primary{background:var(--accent);color:#062}
+
+    /* footer info */
+    .stats{display:flex;gap:18px;margin-top:18px}
+    .stat{background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;min-width:90px;text-align:center}
+    .stat strong{display:block;font-size:16px}
+    .stat span{display:block;font-size:12px;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr;max-width:720px;padding:20px}
+      .photo-wrap{width:200px;height:200px}
+      .photo-wrap img{width:170px;height:170px}
+      .medal{width:72px;height:72px}
+    }
+    @media (max-width:480px){
+      body{padding:18px}
+      .nav{left:16px;transform:none;width:calc(100% - 32px)}
+      .brand{font-size:14px}
+      .menu{display:none}
+      .card{padding:16px}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Main navigation">
+    <div class="brand">SSK</div>
+    <div class="menu">
+      <a href="download3.html">Home</a>
+      <a href="file:///C:/xampp/htdocs/mouse/home2.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="http://localhost:85/mouse/markam.php">Register</a>
+      <a href="http://localhost:85/mouse/sadicard1.php">sadicardregister</a>
+       <a href="https://whatsapp.com/channel/0029VamTuZfAO7RCdHnHtR1a">Whatsup</a>
+      <a href="payment.html">Payment</a>
+      <a href="https://gondwanacademy.in/">Computer</a>
+      <a href="http://www.youtube.com/channel/UCmH5MWpWbbYRRA_6vvIkN2w">youtube Channel</a>
+    </div>
+  </nav>
+
+  <main class="card">
+    <section class="profile" aria-labelledby="person-name">
+      <div class="photo-wrap">
+        <!-- Replace src with your attached image path or URL -->
+        <img src="SARATGOND.jpg" alt="Profile photo">
+
+        <div class="medal" title="Top Achiever">
+          <div>
+            <small>SSK</small>
+            <div class="rank">1st</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="about">
+      <div class="meta">
+        <div>
+          <div id="person-name" class="name">Sarat Gond</div>
+          <div class="role">Community Organizer • Web Designer</div>
+        </div>
+      </div>
+
+      <div class="bio">
+        <p>
+          Born and raised in a small village, Sarat built a reputation for creating clean, accessible web portals that help people access documents and services quickly.
+          He focuses on simple UX, progressive enhancement, and pixel-perfect forms. This story block is the place to paste the biography or story that you want to display next to the circular photo and medal.
+        </p>
+
+        <p>
+          Replace this text with the actual story. If you have a longer timeline or want sections like "Early life", "Career", "Achievements" — you can add headings and expand the layout.
+        </p>
+      </div>
+
+      <div class="buttons">
+        <a class="btn btn-primary" href="#contact">Contact</a>
+        <a href="protal.html">View Services</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>12k</strong><span>Visitors</span></div>
+        <div class="stat"><strong>6</strong><span>Projects</span></div>
+        <div class="stat"><strong>4.9</strong><span>Rating</span></div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

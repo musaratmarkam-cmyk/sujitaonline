@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Govt. Document Links</title>
+  <style>
+    :root{
+      --bg:#0f172a; --card:#0b1220; --muted:#94a3b8; --accent:#06b6d4;
+      --glass: rgba(255,255,255,0.03);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(6,182,212,0.05), transparent 8%),
+        linear-gradient(180deg,#071029 0%, #021126 100%);
+      color:#e6eef6;
+      padding:24px;
+    }
+    .container{
+      width:100%;
+      max-width:980px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:28px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px);
+    }
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    header h1{margin:0;font-size:20px}
+    header p{margin:0;color:var(--muted);font-size:13px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:10px;
+      padding:14px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      transition:transform .12s ease, box-shadow .12s ease;
+      box-shadow: 0 2px 8px rgba(2,6,23,0.6);
+    }
+    .card:hover{transform:translateY(-6px); box-shadow:0 18px 40px rgba(2,6,23,0.6)}
+    .icon{
+      min-width:48px;
+      min-height:48px;
+      display:grid;
+      place-items:center;
+      border-radius:8px;
+      background:var(--glass);
+      color:var(--accent);
+      font-weight:600;
+      font-size:18px;
+    }
+    .meta{flex:1}
+    .meta h3{margin:0;font-size:15px}
+    .meta p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
+    .actions{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .btn{
+      appearance:none;
+      border:0;
+      padding:8px 12px;
+      border-radius:8px;
+      background:transparent;
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+      font-size:13px;
+      border:1px solid rgba(6,182,212,0.14);
+      transition:background .12s ease, color .12s ease;
+    }
+    .btn.primary{
+      background:var(--accent);
+      color:#032024;
+      border:0;
+    }
+    .small{font-size:12px;color:var(--muted);}
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:right}
+    @media (max-width:420px){
+      header{flex-direction:column;align-items:flex-start;gap:6px}
+      footer{text-align:left}
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="title">
+    <header>
+      <div>
+        <h1 id="title">Document Links — Quick Access</h1>
+        <p>Click a button to open the relevant portal. Replace href values with the real links.</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- Aadhaar -->
+      <div class="card" role="group" aria-label="Aadhaar">
+        <div class="icon" aria-hidden>AD</div>
+        <div class="meta">
+          <h3>Aadhaar Services</h3>
+          <p class="small">Update, verify or download Aadhaar details.</p>
+        </div>
+        <div class="actions">
+          <!-- replace href with actual Aadhaar URL -->
+          <a class="btn" href="https://uidai.gov.in/" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+
+      <!-- Voter -->
+      <div class="card" role="group" aria-label="Voter ID">
+        <div class="icon" aria-hidden>V</div>
+        <div class="meta">
+          <h3>Voter ID (Electoral)</h3>
+          <p class="small">Check voter details, apply for voter ID or download EPIC.</p>
+        </div>
+        <div class="actions">
+          <!-- replace href with the appropriate voter services URL -->
+          <a class="btn" href="https://eci.gov.in/" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+
+      <!-- PAN -->
+      <div class="card" role="group" aria-label="PAN">
+        <div class="icon" aria-hidden>PAN</div>
+        <div class="meta">
+          <h3>PAN Card</h3>
+          <p class="small">Apply for or download PAN card e-document.</p>
+        </div>
+        <div class="actions">
+          <!-- replace href with NSDL or UTIITSL PAN link -->
+          <a class="btn" href="https://www.incometax.gov.in/" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+
+      <!-- eDistrict Odisha -->
+      <div class="card" role="group" aria-label="eDistrict Odisha">
+        <div class="icon" aria-hidden>ED</div>
+        <div class="meta">
+          <h3>eDistrict — Odisha</h3>
+          <p class="small">State services: certificates, status checks, downloads.</p>
+        </div>
+        <div class="actions">
+          <!-- replace href with Odisha eDistrict portal URL -->
+          <a class="btn" href="https://edistrict.odisha.gov.in/" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+
+      <!-- RC Book -->
+      <div class="card" role="group" aria-label="RC Book">
+        <div class="icon" aria-hidden>RC</div>
+        <div class="meta">
+          <h3>RC Book (Vehicle)</h3>
+          <p class="small">Parivahan / RTO services for RC, driving, tax & permits.</p>
+        </div>
+        <div class="actions">
+          <!-- replace href with Parivahan or relevant RTO link -->
+          <a class="btn" href="https://parivahan.gov.in/" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+    </div>
+
+<!-- Youtube -->
+      <div class="card" role="group" aria-label="YOUTUBE">
+        <div class="icon" aria-hidden>YOUTUBE</div>
+        <div class="meta">
+          <h3>Youtube (trainig)</h3>
+          <p class="small">Online trainig video,education or maind setup video.</p>
+        </div>
+        <div class="actions">
+          <!-- replace href with youtube training video link -->
+          <a class="btn" href="https://www.youtube.com/channel/UCmH5MWpWbbYRRA_6vvIkN2w/" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+    </div>
+
+ <!-- Whatsup Group -->
+      <div class="group" role="group" aria-label="Whatsup Group">
+        <div class="icon" aria-hidden>Whatsup</div>
+        <div class="meta">
+          <h3>Whatsupgroup</h3>
+          <p class="small">Any problem for contact me, my whatsup no-8144199299.</p>
+        </div>
+        <div class="actions">
+          <!-- replace href with whatsup group link -->
+          <a class="btn" href="https://whatsapp.com/channel/0029VamTuZfAO7RCdHnHtR1a/" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span class="small">saratgond96@gmail.com.</span>
+    </footer>
+  </div>
+<nav><a href="home.html">Home</a></nav>
+</body>
+</html>

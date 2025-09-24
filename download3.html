@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Services Portal</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  }
+
+  header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #343a40;
+  }
+
+  nav a {
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  nav a:hover {
+    background-color: #495057;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: #343a40;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .service-card {
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #f8f9fa;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  .service-card button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .service-card button:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+
+<header>Government Services Portal</header>
+
+<nav>
+  <a href="home.html">Home</a>
+  <a href="#pan">PAN Card</a>
+  <a href="#adhar">Aadhar Card</a>
+  <a href="#rc">RC Book</a>
+  <a href="#birth-death">Birth/Death Certificate</a>
+  <a href="#ration">Ration Card</a>
+  <a href="#passbook">Passbooks</a>
+  <a href="#dl">Driving License</a>
+</nav>
+
+<div class="container">
+  <h2 id="pan">PAN Card Services</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <p>Automatic PAN Card Download</p>
+      <button>Download</button>
+    </div>
+    <div class="service-card">
+      <p>Manual PAN Upload</p>
+      <button>Upload</button>
+    </div>
+    <div class="service-card">
+      <p>PAN to Aadhar Number Find</p>
+      <button>Search</button>
+    </div>
+  </div>
+
+  <h2 id="adhar">Aadhar Services</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <p>Manual Aadhar Upload</p>
+      <button>Upload</button>
+    </div>
+    <div class="service-card">
+      <p>Aadhar Finger Capture</p>
+      <button>Capture</button>
+    </div>
+  </div>
+
+  <h2 id="rc">RC Book Services</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <p>Download RC Book</p>
+      <button>Download</button>
+    </div>
+    <div class="service-card">
+      <p>Manual RC Upload</p>
+      <button>Upload</button>
+    </div>
+  </div>
+
+  <h2 id="birth-death">Birth & Death Certificates</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <p>Download Birth Certificate</p>
+      <button>Download</button>
+    </div>
+    <div class="service-card">
+      <p>Download Death Certificate</p>
+      <button>Download</button>
+    </div>
+  </div>
+
+  <h2 id="ration">Ration Card Services</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <p>Ration Card to Aadhar Number Find</p>
+      <button>Search</button>
+    </div>
+    <div class="service-card">
+      <p>Manual Ration Card Upload</p>
+      <button>Upload</button>
+    </div>
+  </div>
+
+  <h2 id="passbook">All Passbooks</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <p>View/Download Passbooks</p>
+      <button>Access</button>
+    </div>
+  </div>
+
+  <h2 id="dl">Driving License Services</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <p>Manual DL Upload</p>
+      <button>Upload</button>
+    </div>
+    <div class="service-card">
+      <p>Download DL</p>
+      <button>Download</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pay & Continue — QR Checkout</title>
+  <style>
+    /* Animated gradient background */
+    :root{--bg1:#0f172a;--bg2:#1e293b}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{
+      display:grid;place-items:center;padding:24px;background:linear-gradient(120deg,var(--bg1),var(--bg2));
+      overflow:hidden;color:#e6eef8
+    }
+    .bg-anim{
+      position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(600px 600px at 10% 20%, rgba(99,102,241,0.12), transparent 8%),
+        radial-gradient(500px 500px at 80% 80%, rgba(14,165,233,0.08), transparent 6%);
+      animation: float 12s ease-in-out infinite;
+      backdrop-filter: blur(6px);
+    }
+    @keyframes float{0%{transform:translateY(-10px)}50%{transform:translateY(10px)}100%{transform:translateY(-10px)}}
+
+    /* Card */
+    .card{position:relative;z-index:2;width:360px;max-width:95%;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.04)}
+    h1{margin:0 0 8px;font-size:20px}
+    p{margin:0 0 16px;color:#cfe7ff;font-size:14px}
+
+    /* QR section */
+    .qr-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+    .qr{width:220px;height:220px;border-radius:10px;background:#fff;display:grid;place-items:center;padding:16px}
+    .qr img{max-width:100%;height:auto;display:block}
+
+    /* Buttons */
+    .btn{width:100%;padding:12px 14px;border-radius:10px;border:0;font-weight:600;font-size:16px}
+    .btn-pay{background:linear-gradient(90deg,#06b6d4,#7c3aed);color:white;cursor:pointer}
+    .btn-disabled{opacity:0.6;cursor:not-allowed}
+
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;color:#cbd5e1;font-size:13px}
+    .small{font-size:12px;color:#94a3b8}
+
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:20}
+    .modal.show{display:flex}
+    .modal-card{background:#0b1220;color:#e6eef8;padding:18px;border-radius:12px;width:320px;max-width:90%;text-align:center;border:1px solid rgba(255,255,255,0.04)}
+
+    /* tiny responsive tweaks */
+    @media (max-width:420px){.qr{width:180px;height:180px}}
+  </style>
+</head>
+<body>
+  <div class="bg-anim" aria-hidden="true"></div>
+
+  <div class="card" role="main">
+    <h1>Pay & Continue</h1>
+    <p>Tap the QR to scan or press <strong>Pay & Continue</strong> if you've completed the payment. This page works with touch events. phonepay-7682875246 SARAT GOND</p>
+<nav><a href="home.html">Home</a></nav>
+    <div class="qr-wrap">
+      <!-- Replace src with your generated QR code image or data URL -->
+      <div class="qr" id="qrArea" role="img" aria-label="QR code for payment">
+        <img id="qrImage" src="sarat scan.jpg" alt="QR code" />
+      </div>
+
+      <button id="payBtn" class="btn btn-pay" type="button">Pay & Continue</button>
+      <div class="meta"><span class="small">Amount</span><strong>₹ 249.00</strong></div>
+    </div>
+  </div>
+    <!-- Scan -->
+      <div class="card" role="group" aria-label="Qr code">
+        <div class="icon" aria-hidden> Scan link</div>
+        <div class="meta">
+          <h3>Qrcode(scaner)</h3>
+          <p class="small">click Here & Scan</p>
+        </div>
+        <div class="actions">
+          <!-- replace href with phanepay qr code link -->
+          <a class="btn" href="https://srtpay.edgeone.app/" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- Modal shown after pressing pay -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div id="modalContent">Waiting for payment confirmation…</div>
+      <div style="height:12px"></div>
+      <button id="closeModal" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:#cfe7ff">Close</button>
+    </div>
+  </div>
+
+<script>
+  // Config
+  const PAYMENT_AMOUNT = 249.00; // replace dynamically if needed
+  const SAVE_ENDPOINT = './save.php'; // PHP endpoint that accepts JSON POST
+
+  // Elements
+  const payBtn = document.getElementById('payBtn');
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modalContent');
+  const closeModal = document.getElementById('closeModal');
+  const qrArea = document.getElementById('qrArea');
+
+  // Utility: simulate verifying payment with server
+  async function saveTransaction(payload){
+    try{
+      const res = await fetch(SAVE_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      return await res.json();
+    }catch(err){
+      console.error('save error', err);
+      return {success:false, error:err.message || 'network error'};
+    }
+  }
+
+  // Touch-friendly handling
+  function onPay(){
+    payBtn.disabled = true; payBtn.classList.add('btn-disabled');
+    modal.classList.add('show'); modal.setAttribute('aria-hidden','false');
+    modalContent.innerText = 'Processing payment confirmation...';
+
+    // In real flow: call payment provider webhook / verify payment id
+    // Here: simulate with a short timeout then save to DB
+    const payload = {amount: PAYMENT_AMOUNT, method: 'qr', timestamp: new Date().toISOString(), note: 'User tapped pay'};
+
+    // Simulate 1.2s delay to mimic verification
+    setTimeout(async ()=>{
+      modalContent.innerText = 'Verifying and saving transaction...';
+      const result = await saveTransaction(payload);
+      if(result && result.success){
+        modalContent.innerHTML = '<strong>Payment recorded!</strong><div style="margin-top:8px">Transaction ID: '+(result.txn_id||'n/a')+'</div>';
+      }else{
+        modalContent.innerHTML = '<strong>Failed to record payment</strong><div class="small" style="margin-top:6px;">'+(result&&result.error?result.error:'Unknown error')+'</div>';
+      }
+      payBtn.disabled = false; payBtn.classList.remove('btn-disabled');
+    }, 1200);
+  }
+
+  // Support both click and touchstart (touch-first UX)
+  payBtn.addEventListener('click', onPay);
+  payBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); onPay(); });
+
+  // QR area tap opens image in new tab (for scanning on desktop) or triggers a hint on mobile
+  qrArea.addEventListener('click', ()=>{ window.open(document.getElementById('qrImage').src,'_blank') });
+  qrArea.addEventListener('touchstart', (e)=>{ e.preventDefault(); window.open(document.getElementById('qrImage').src,'_blank') });
+
+  closeModal.addEventListener('click', ()=>{ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); });
+  closeModal.addEventListener('touchstart', (e)=>{ e.preventDefault(); modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); });
+
+  // Optional: dynamically set QR image (example: data URL or server-provided path)
+  // document.getElementById('qrImage').src = 'data:image/png;base64,...';
+</script>
+</body>
+</html>

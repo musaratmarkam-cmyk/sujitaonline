@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile — Circle Medal</title>
+  <style>
+    :root{
+      --accent:#3b82f6; /* blue */
+      --bg:#0f172a; /* dark navy */
+      --card:#0b1220;
+      --muted:#98a2b3;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system,Segoe UI, Roboto, "Helvetica Neue", Arial;background:linear-gradient(180deg,#071024 0%, #071428 100%);color:#e6eef8;min-height:100vh;display:flex;flex-direction:column}
+
+    /* Top navigation */
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:46px;height:46px;border-radius:10px;background:conic-gradient(from 180deg at 50% 50%,var(--accent),#06b6d4,#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:700;color:#02102b}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-size:15px}
+    nav a:hover{color:var(--accent);background:rgba(255,255,255,0.02)}
+    .cta{background:linear-gradient(90deg,var(--accent),#06b6d4);padding:8px 14px;border-radius:10px;color:#02102b;font-weight:600;text-decoration:none}
+
+    /* Main layout */
+    .container{width:100%;max-width:1100px;margin:28px auto;padding:0 20px;display:grid;grid-template-columns:360px 1fr;gap:28px}
+
+    /* Left column: medal/profile */
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.04);padding:28px;border-radius:18px}
+    .medal-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+
+    /* circular profile with medal ring */
+    .medal{
+      position:relative;width:210px;height:210px;border-radius:999px;display:grid;place-items:center;
+    }
+    .medal::before{
+      /* outer decorative ring */
+      content:'';position:absolute;inset:-12px;border-radius:999px;background:conic-gradient(from 180deg,var(--accent),#06b6d4,#60a5fa);filter:blur(6px);opacity:0.75;z-index:0
+    }
+    .medal::after{
+      /* inner glossy ring */
+      content:'';position:absolute;inset:14px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,0.06),transparent);z-index:2;mix-blend-mode:overlay
+    }
+    .avatar{
+      width:180px;height:180px;border-radius:999px;overflow:hidden;position:relative;z-index:3;border:6px solid rgba(4,8,15,0.6);background:linear-gradient(180deg,#0a1222,#061029);
+      display:flex;align-items:center;justify-content:center
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .ribbon{margin-top:8px;display:flex;gap:8px;align-items:center}
+    .ribbon .bar{width:22px;height:46px;border-radius:4px;background:linear-gradient(180deg,#dbeafe,#bfdbfe);transform:skewX(-12deg)}
+    .ribbon .name{font-weight:700;color:#fff}
+    .role{color:var(--muted);font-size:14px}
+
+    /* Right column: story */
+    .story{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:22px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+    .story h2{margin:0 0 12px 0}
+    .story p{color:var(--muted);line-height:1.6}
+    .meta{display:flex;gap:12px;margin-top:14px;color:var(--muted);font-size:14px}
+
+    /* small screens */
+    @media (max-width:900px){
+      .container{grid-template-columns:1fr;}
+      header{padding:12px 16px}
+      .medal{width:170px;height:170px}
+      .avatar{width:150px;height:150px}
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">CM</div>
+      <div>
+        <div style="font-weight:700">CircleMedal</div>
+        <div style="font-size:12px;color:var(--muted)">Profile showcase</div>
+      </div>
+    </div>
+    <nav>
+      <a href="file:///C:/xampp/htdocs/mouse/home.html#sadicard%20register">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#register" class="cta">Register</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <aside class="card">
+      <div class="medal-wrap">
+        <div class="medal">
+          <div class="avatar">
+            <!-- Replace "avatar.jpg" with your attached image filename or a public URL -->
+            <img src="SARATGOND.JPG" alt="Profile photo" />
+          </div>
+        </div>
+
+        <div style="text-align:center">
+          <div class="ribbon">
+            <div class="bar"></div>
+            <div>
+              <div class="name">Sarat Gond</div>
+              <div class="role">Web Designer & Frontend Dev</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="width:100%;display:flex;gap:10px;justify-content:center;margin-top:6px">
+          <a href="#" style="text-decoration:none;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted)">Message</a>
+          <a href="#" style="text-decoration:none;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted)">Follow</a>
+        </div>
+      </div>
+    </aside>
+
+    <section class="story" id="home">
+      <h2>About the Story</h2>
+      <p>
+        This is a compact profile layout that highlights an attached image inside a circular "medal" presentation. Use this space to tell the story behind the person — who they are, what they do, and why they matter. The circular photo is intentionally emphasized with a colored ring and subtle glow so it reads like a medal.
+      </p>
+
+      <p style="margin-top:12px">
+        Example story: "Sarat grew up in a small village and discovered an early passion for web design. He builds lightweight, accessible interfaces and enjoys crafting playful micro-interactions. His current focus is on building printable portals and registration systems for local communities."
+      </p>
+
+      <div class="meta">
+        <div>📍 Odisha, India</div>
+        <div>💼 Freelance</div>
+        <div>✉️ contact@example.com</div>
+      </div>
+
+      <hr style="margin:18px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)" />
+
+      <h3 id="about">More about</h3>
+      <p style="color:var(--muted)">Add longer biography, achievements, or a timeline here. You can also link to portfolio items, downloadable CV, or embed a small gallery beneath the story.</p>
+
+      <h3 id="services" style="margin-top:18px">Services</h3>
+      <ul style="color:var(--muted);line-height:1.8">
+        <li>Web design & templates</li>
+        <li>Student registration portals</li>
+        <li>Printable ID / document templates</li>
+      </ul>
+
+      <p style="margin-top:18px"><a href="#register" style="color:var(--accent);text-decoration:none">Register for updates →</a></p>
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:18px 8px;color:var(--muted)">© <span id="year"></span> CircleMedal — crafted with ♥</footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
